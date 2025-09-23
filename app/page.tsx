@@ -5,7 +5,7 @@ import { useState } from "react";
 export default function PortfolioSite() {
   const [active, setActive] = useState<null | number>(null);
 
-  // —— あなたの実績に差し替えてください ——
+
   const projects = [
     {
       id: 1,
