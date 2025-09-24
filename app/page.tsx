@@ -12,11 +12,11 @@ export default function Home() {
 
       {/* ベースの薄暗レイヤー */}
       <div className="absolute inset-0 bg-black/30" />
-      {/* 右側をより黒くするグラデーション（上書き） */}
-      <div className="absolute inset-0 bg-gradient-to-l from-black/70 via-black/40 to-transparent" />
+      {/* 右側をより黒くするグラデーション */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
 
       {/* 上の細ライン */}
-      <div className="absolute left-4 right-4 top-5 h-px bg-white/30" />
+      <div className="absolute left-4 right-4 top-12 h-px bg-white/30" />
 
       {/* 右上ナビ */}
       <nav className="absolute right-8 top-4 z-20 flex gap-6 text-sm text-neutral-100">
@@ -31,7 +31,7 @@ export default function Home() {
       <div aria-hidden className="absolute top-[18vh] left-[22%] h-[70vh] w-[70vh] rounded-full border border-white/35" />
       <div aria-hidden className="absolute top-[42vh] left-[50%] h-[42vh] w-[42vh] rounded-full border border-white/20" />
 
-      {/* 見出しブロック：少し右へ（left を 15% に） */}
+      {/* 見出しブロック */}
       <div className="absolute left-[15%] top-[16vh] z-10 max-w-[36rem]">
         <h1 className="font-serif text-[42px] leading-[1.2] drop-shadow md:text-[64px]">
           AI×人間
@@ -44,14 +44,14 @@ export default function Home() {
         </h1>
       </div>
 
-      {/* 右下：白いバーコード＋サブコピー＋CLI行 */}
-      <div className="absolute bottom-6 right-6 z-10 flex flex-col items-end gap-1">
-        {/* 白バーコード（repeating-linear-gradient で白ストライプ） */}
-        <div className="h-2 w-64 opacity-85 bg-[repeating-linear-gradient(90deg,rgba(255,255,255,0.9)_0_8px,rgba(255,255,255,0)_8px_14px)]" />
+      {/* 右下：バーコード部分 */}
+      <div className="absolute bottom-15 right-30 z-10 flex flex-col items-end gap-1">
+        <p className="font-barcode text-6xl text-white block leading-none overflow-hidden h-[40px]">
+          *KAZUKI*
+        </p>
         <p className="font-mono text-[11px] tracking-widest text-neutral-200">
           Skeletons to Structures
         </p>
-        <p className="font-mono text-[10px] text-neutral-400">{">"} npm run design</p>
       </div>
     </main>
   );

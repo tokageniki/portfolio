@@ -24,3 +24,13 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* バーコード用（Code 39）*/
+.font-barcode {
+  font-family: "Libre Barcode 39", system-ui, sans-serif;
+  letter-spacing: 0; 
+  line-height: 1;   
+  display: block;
+  overflow: hidden;
+}
+
