@@ -1,4 +1,4 @@
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Space_Grotesk, Orbitron } from "next/font/google";
 
 
  /* NOTE:
@@ -17,6 +17,12 @@ export const inter = Inter({
 export const grotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-grotesk",
+  display: "swap",
+});
+
+export const orbitron = Orbitron({
+  weight: ["400", "700"],
+  subsets: ["latin"],
   display: "swap",
 });
 

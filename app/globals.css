@@ -19,11 +19,54 @@
   }
 }
 
+
+/* 背景文字 */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+.font-orbitron {
+  font-family: 'Orbitron', sans-serif;
+}
+
+.marquee-window {
+  -webkit-mask-image: linear-gradient(to right, transparent 0 5%, #000 20% 80%, transparent 95% 100%);
+          mask-image: linear-gradient(to right, transparent 0 5%, #000 20% 80%, transparent 95% 100%);
+}
+/* 端で途切れないループ用 */
+@keyframes marqueeLoop {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); } 
+}
+
+/* 窓（既存のmarquee-windowを併用してOK） */
+.marquee {
+  position: absolute;
+  inset: 0;                
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 30;
+}
+
+/* 横に2ブロック並べて200%幅にするトラック */
+.marquee__track {
+  display: flex;
+  width: 200%;
+  animation: marqueeLoop 60s linear infinite; 
+  will-change: transform;
+}
+
+/* テキスト1ブロック分 */
+.marquee__text {
+  flex: 0 0 50%;        
+  white-space: nowrap;
+}
+
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
 
 /* バーコード用（Code 39）*/
 .font-barcode {
@@ -33,4 +76,3 @@ body {
   display: block;
   overflow: hidden;
 }
-
