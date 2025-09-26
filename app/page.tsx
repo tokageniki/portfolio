@@ -21,6 +21,8 @@ export default function Home() {
         alt="base"
         className="absolute inset-0 h-full w-full object-cover"
       />
+      {/* ベースの薄暗レイヤー */}
+      <div className="absolute inset-0 bg-black/30" />
 
 
       {/* ベースの薄暗レイヤー */}
@@ -28,8 +30,7 @@ export default function Home() {
       {/* 左→右の黒グラデ */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
 
-      {/* 上の細ライン */}
-      <div className="absolute left-4 right-4 top-16 h-px bg-white/60" />
+
 
       {/* 右上ナビ */}
       <nav className="absolute bottom-60 left-1/2 -translate-x-1/2 z-[80] flex gap-8 text-sm text-neutral-100">
