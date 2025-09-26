@@ -15,25 +15,13 @@ export default function Home() {
 
   return (
     <main className="relative h-[100svh] overflow-hidden text-white">
-      <div className="absolute inset-0">
-        {/* シャープな元画像 */}
-        <img
-          src="/hero-dino.jpg"
-          alt="base"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
+      {/* 背景画像 */}
+      <img
+        src="/hero-dino.jpg"
+        alt="base"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
 
-        {/* 中心を少しだけぼかすレイヤー */}
-        <img
-          src="/hero-dino.jpg"
-          alt="blurred"
-          className="absolute inset-0 h-full w-full object-cover blur-xl"
-          style={{
-            maskImage: "radial-gradient(circle, black 0%, transparent 80%)",
-            WebkitMaskImage: "radial-gradient(circle, black 0%, transparent 80%)",
-          }}
-        />
-      </div>
 
       {/* ベースの薄暗レイヤー */}
       <div className="absolute inset-0 bg-black/30" />
@@ -65,7 +53,7 @@ export default function Home() {
       </div>
 
       {/* 左上：見出し */}
-      <div className="absolute left-[60vh] top-[20vh] z-[80] max-w-[36rem]">
+      <div className="absolute left-[55vh] top-[20vh] z-[80] max-w-[36rem]">
         <div className="flex items-center gap-6">
           {/* 縦線 */}
           <div className="h-[200px] top-[12vh] w-[1px] bg-white" />
