@@ -1,5 +1,4 @@
 import "./globals.css";
-import "./styles/lamp.css";
 import type { Metadata, Viewport } from "next";
 import { inter, grotesk } from "./fonts";
 

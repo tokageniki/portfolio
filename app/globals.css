@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -50,7 +51,7 @@
 .marquee__track {
   display: flex;
   width: 200%;
-  animation: marqueeLoop 60s linear infinite; 
+  animation: marqueeLoop 120s linear infinite; 
   will-change: transform;
 }
 
@@ -76,3 +77,163 @@ body {
   display: block;
   overflow: hidden;
 }
+
+.snap-container {
+  height: 100svh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+.snap-section {
+  height: 100svh;
+  scroll-snap-align: start;
+}
+
+html, body {
+  height: 100%;
+  scroll-snap-type: y proximity;  /* mandatory だとガクガクするので proximity */
+  overscroll-behavior-y: none;    /* バウンス抑制（任意） */
+}
+
+section {
+  scroll-snap-align: start;
+}
+
+.marquee-window { position: absolute; inset: 0; }
+.marquee__track {
+  position: absolute;
+  white-space: nowrap;
+  line-height: 1;
+  top: 10%;
+  left: 0;
+  animation: marquee-x 28s linear infinite;
+}
+.marquee__text { display: inline-block; padding-right: 2rem; }
+@keyframes marquee-x {
+  0%   { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); } /* テキストを左へ流す */
+}
+
+/* ====== 派手さブースト: 追記ここから ====== */
+
+/* アクセントカラー（好みで変えてOK） */
+:root { --acc-1:#9CA3AF; --acc-2:#ebebe5; --acc-3:#ee9622; }
+
+
+/* グラデ移動（見出しやラインの“流れる虹”） */
+@keyframes gradientShift {
+  0% { background-position: 0% 50% }
+  50%{ background-position: 100% 50% }
+  100%{ background-position: 0% 50% }
+}
+
+/* スポットライト（マウス追従） */
+.spotlight {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  background: radial-gradient( circle 220px at var(--mx, 50%) var(--my, 50%),
+    rgba(255,255,255,0.12), rgba(255,255,255,0.06) 40%, transparent 60% );
+  mix-blend-mode: screen; /* 光らせる */
+}
+
+/* スターフィールド（奥行き） */
+.starfield, .starfield:before, .starfield:after {
+  position: fixed; inset: 0; content: ""; display: block; z-index: -1;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.6), transparent 40%),
+    radial-gradient(2px 2px at 80px 120px, rgba(255,255,255,0.5), transparent 40%),
+    radial-gradient(1px 1px at 200px 180px, rgba(255,255,255,0.35), transparent 40%),
+    radial-gradient(1px 1px at 340px 60px, rgba(255,255,255,0.35), transparent 40%);
+  background-size: 400px 400px, 600px 600px, 800px 800px, 1000px 1000px;
+  opacity: .35;
+  animation: starDrift 60s linear infinite;
+}
+.starfield:before {
+  opacity: .25; animation-duration: 90s; filter: blur(0.5px);
+}
+.starfield:after {
+  opacity: .18; animation-duration: 130s; filter: blur(1px);
+}
+@keyframes starDrift {
+  0%   { background-position: 0 0,    0 0,    0 0,    0 0; }
+  100% { background-position: -400px 0, -600px 0, -800px 0, -1000px 0; }
+}
+
+/* ネオングロー（カード/ボタン用） */
+.neon {
+  position: relative;
+  box-shadow:
+    0 0 0.5px rgba(255,255,255,0.5),
+    0 0 8px rgba(22,242,179,0.2),
+    0 0 16px rgba(53,162,255,0.14);
+}
+.neon::after {
+  content:""; position:absolute; inset:-1px; border-radius:inherit;
+  background: linear-gradient(90deg, var(--acc-1), var(--acc-2), var(--acc-3));
+  opacity:.45; filter: blur(6px); z-index:-1;
+}
+
+/* 走るボーダー（hoverで加速） */
+.border-dash {
+  position: relative; border: 1px solid rgba(255,255,255,0.16);
+}
+.border-dash::before {
+  content:""; position:absolute; inset:0; border-radius:inherit;
+  border: 1px dashed rgba(255,255,255,0.35);
+  mask: linear-gradient(#000 0 0) exclude, linear-gradient(#000 0 0);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
+  background-size: 200% 1px; background-repeat: no-repeat; background-position: 200% 0%;
+  animation: dashMove 3.2s linear infinite;
+  pointer-events:none;
+}
+@keyframes dashMove {
+  to { background-position: -200% 100% }
+}
+.hover-speedup:hover .border-dash::before {
+  animation-duration: 1.2s;
+}
+
+/* 画像のキラッ（サムネに横切る光） */
+.glint {
+  position: relative; overflow: hidden;
+}
+.glint::after{
+  content:""; position:absolute; top:-50%; left:-50%; width:120%; height:200%;
+  background: linear-gradient(75deg, transparent 40%, rgba(255,255,255,.35) 50%, transparent 60%);
+  transform: translateX(-120%); transition: transform .8s ease;
+}
+.glint:hover::after { transform: translateX(60%); }
+
+/* 派手な見出し（流れるグラデ） */
+.fancy-head {
+  background: linear-gradient(120deg, var(--acc-1), var(--acc-2), var(--acc-3));
+  background-size: 200% 200%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: gradientShift 8s ease infinite;
+  text-shadow: 0 0 18px rgba(22,242,179,0.08);
+}
+
+/* パララックス用（軽量） */
+.parallax {
+  transform: translate3d(calc(var(--tx, 0px) * 1), calc(var(--ty, 0px) * 1), 0);
+  transition: transform .08s linear;
+}
+
+/* セクション上下の黒グラ（強め版）—既存より濃くしたい時にどうぞ
+.section-topfade  { pointer-events:none; position:absolute; top:0; left:0; height:120px; width:100%; background:linear-gradient(to bottom, rgba(0,0,0,.8), transparent) }
+.section-btmfade  { pointer-events:none; position:absolute; bottom:0; left:0; height:120px; width:100%; background:linear-gradient(to top, rgba(0,0,0,.8), transparent) }
+*/
+
+/* ====== 派手さブースト: 追記ここまで ====== */
+
+/* ==== OMS Light Theme ==== */
+:root.theme-oms {
+  --background: #ffffff;
+  --foreground: #111111;           /* 文字は深い黒すぎない#111 */
+  --acc-1: #111111;                /* 強調も基本は黒 */
+  --acc-2: #6b7280;                /* 中間のグレー（説明や罫線） */
+  --acc-3: #e5e7eb;                /* 薄い罫線色 */
+}
+
