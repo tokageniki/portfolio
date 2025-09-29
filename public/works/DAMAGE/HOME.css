@@ -1,0 +1,121 @@
+body{
+    background-color: #eef6ff;
+    color: #5b5b5b;
+}
+.head{
+    background-color: #ffffff;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 3つの要素を均等に配置 */
+    gap: 10px; /* 要素間の間隔 */
+    height: 12%;
+    width: 100%;
+    position: fixed;
+    transform: translate(-0.5%,-8%);
+}
+.hedlef{
+    display: flex;
+}
+img{
+    max-width: 100%;
+    height: auto;
+}
+.logo img{
+    width: 60px;
+}
+.logo{
+    margin: 10px 10px 0 10px;
+    width: 0 10% 0 30% ;
+}
+.F{
+    font-size: 11px;
+    margin: 2px 0;
+    font-weight: bold;
+}
+.hedlef h1{
+    font-size: 35px;
+    margin-top: 25px;
+    margin-bottom: 0;
+}
+.tab{
+    width: 800px;
+    display: flex;
+    justify-content: flex-end;
+    height: 20%;
+}
+.tab div{
+    font-weight: 400;
+    padding: 10px 0 0 30px;
+    font-size: 18px;
+    width: 70%;
+}
+.btn {
+    font-weight:bold;
+    width: 150px;
+    color: #e60012;
+    margin-right: 20px;
+    padding-top: 10px;
+    padding-right: 12px;
+    padding-bottom: 32px;
+    padding-left: 16px;
+    border: 1px solid #e60012;
+    border-radius: 999999px;
+}
+
+.cm{
+    position: fixed;
+    padding-bottom: 200%;
+}
+.square{
+    font-weight: 600;
+    margin: 0 4% 1% 25%;
+    color: #ffffff;
+    padding: 0.5% 1%;
+    background: #378de2;
+    width: 15%;
+}
+/*タブ切り替え全体のスタイル*/
+.tabs {
+    margin:  0 auto;   
+    padding: 90px 0 200% 0;
+    width: 100%;
+    background-color: #f6f6f6;
+}
+.alltab{
+    width: 800px;
+}
+  
+/*タブのスタイル*/
+.tab_item {
+    border-left:1px solid #a8a8a8; /*線の設定*/
+    background-color: #ffffff;
+    padding: 0 4%;
+    text-decoration: none;
+}
+.tab1 ul{
+    font-size: 13px;
+    margin: 10px 0;
+    display: flex;
+    justify-content: flex-end;
+}
+.tab_item2{
+    padding: 0 2%;
+}
+.youso{
+    display: flex;
+    text-align:  center; 
+    padding: 0 30%;
+    background-color: #f0f0f0;
+}
+.youso .day{
+    margin: 5px 0 10px 0;
+    font-size: 20px;
+}
+.day span{
+    display: inline-block; 
+    font-size: 40px;
+}
+.youso img{
+    width: 60px;
+    height: 60px;
+    padding: 10px 10px 0 10px;
+}
