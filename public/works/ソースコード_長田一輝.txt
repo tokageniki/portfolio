@@ -1,0 +1,82 @@
+from diffusers import StableDiffusionPipeline
+import torch
+from gensim.models import word2vec
+import flet as ft
+
+
+MODEL_ID = "CompVis/stable-diffusion-v1-4"
+YOUR_TOKEN = os.getenv("HF_TOKEN")  
+Gmodel = word2vec.KeyedVectors.load_word2vec_format("content/model.vec")
+pipe = StableDiffusionPipeline.from_pretrained(MODEL_ID, variant="fp16", torch_dtype=torch.float16, use_auth_token=YOUR_TOKEN)
+
+pipe = pipe.to("cuda")
+pc = []
+
+def main(page: ft.Page):
+    page.title = "Images Example"
+    idx = 0
+    
+    def images(e = 'fake'):
+        nonlocal idx
+        pc.append(prompt.value if prompt.value else "girl")
+        page.remove(select)
+        t = ft.Text(value="画像生成中", color="green")
+        page.add(t)
+        page.update()
+
+        tprompt = ",".join(pc)
+        image = pipe(tprompt).images[0]
+        idx += 1
+        image_path = f"images/{tprompt}{idx}.png"
+        image.save(image_path)
+
+        page.remove(t)
+        img_up = ft.Image(src=image_path,fit=ft.ImageFit.CONTAIN,)
+
+
+        def call(pc):
+            con = int(tb1.value)
+            V = 0
+            save = []
+            for i in pc:
+                for root, value in Gmodel.most_similar(positive = [i], topn=con):
+                    item = root 
+                if con < 10:
+                    save.append(item)
+                    print(item)
+                else:
+                    pc[V] = item
+                    print(item)
+                V += 1
+            pc += save
+            page.add(select)
+            images()
+
+
+        def evaluation(e):
+            page.remove(tb1,tb4,img_up)
+            if len(pc) >= 2:
+                page.remove(tb2)
+            elif len(pc) >= 3:
+                page.remove(tb3)
+            page.update()
+            print(tprompt)
+            call(pc)
+
+        tb1 = ft.TextField(hint_text="どれだけ好ましいと思う？", width=300)
+        page.add(tb1,img_up)
+        if len(pc) >= 2:
+            tb2 = ft.FilledTonalButton(text=pc[1], on_click=evaluation)
+            page.add(tb2)
+        if len(pc) >= 3:
+            tb3 = ft.FilledTonalButton(text=pc[2], on_click=evaluation)
+            page.add(tb3)
+        tb4 = ft.FilledTonalButton(text="どれも好きではない", on_click=evaluation)
+        page.add(tb4)
+        page.update()
+
+    prompt = ft.TextField(hint_text="好きな特徴を入力してください", width=300)
+    select = ft.FilledTonalButton(text="決定", on_click=lambda e: images())
+    page.add(prompt,select)
+
+ft.app(target=main)
