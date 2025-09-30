@@ -74,7 +74,7 @@ export default function Home() {
               <span className="text-white/60">（HTML / CSS / JS / jQuery / slick）</span>
             </li>
             <li>
-              <span className="font-semibold text-white">博麗神社例大祭ホームページ</span> — "年間数万人が参加するイベント"の公式サイトを制作。企画紹介・入場券販売ページなど複数コンテンツを担当。
+              <span className="font-semibold text-white">博麗神社例大祭ホームページ</span> — 年間数万人が参加するイベントの公式サイトを制作。企画紹介・入場券販売ページなど複数コンテンツを担当。
               <span className="text-white/60">（Design & チーム制作）</span>
             </li>
           </ul>
