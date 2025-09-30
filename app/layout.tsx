@@ -24,11 +24,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </header>
         </div>
         {children}
-        <footer className="mt-20 border-t border-white/10">
-          <div className="container py-10 text-sm text-white/60">
-            © {new Date().getFullYear()} Kazuki Nagata. All rights reserved.
-          </div>
-        </footer>
       </body>
     </html>
   );
